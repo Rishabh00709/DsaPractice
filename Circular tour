@@ -1,0 +1,27 @@
+class Solution
+{
+    //Function to find starting point where the truck can start to get through
+    //the complete circle without exhausting its petrol in between.
+    int tour(int petrol[], int distance[])
+    {
+	// Your code here
+	
+	int reqfuel =0;
+	int extrafuel =0;
+	int start=0;
+	for(int i=0;i<petrol.length;i++)
+	{extrafuel = extrafuel+petrol[i] - distance[i];
+	    
+	    if(extrafuel <0)
+	    {
+	        reqfuel = reqfuel + extrafuel;
+	        start = i+1;
+	        extrafuel =0;
+	    }
+	}
+	if(extrafuel + reqfuel >=0)
+	return start;
+	
+	return -1;
+    }
+}

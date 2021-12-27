@@ -1,0 +1,26 @@
+static int countNodesinLoop(Node head)
+    {
+        //Add your code here.
+        Node meetingpoint = null;
+        Node curr = head;
+        Node jumpcurr = head;
+        
+        while(jumpcurr!=null && jumpcurr.next !=null)
+        {
+            jumpcurr = jumpcurr.next.next;
+            curr = curr.next;
+        
+        if(curr == jumpcurr){
+            int count =0;
+            while(curr.next!= jumpcurr)
+            {
+                count++;
+                curr = curr.next;
+            }
+            return count +1;
+        }
+    }
+    return 0;
+        
+    }
+}

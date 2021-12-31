@@ -1,0 +1,62 @@
+class Solution
+{
+    //Function to sort the given linked list using Merge Sort.
+    static Node mergeSort(Node head)
+    {
+        // add your code here
+        
+        if(head == null)
+        return head;
+        
+        else if(head.next == null)
+        return head;
+        
+        else
+        {
+            Node middle =getmiddle(head); 
+            Node nextofmiddle = middle.next;
+            middle.next = null;
+            Node left = mergeSort(head);
+            Node right = mergeSort(nextofmiddle);
+         Node  sortedlist = sortedMerge(left,right);
+            return sortedlist;
+        }
+    }
+        public static Node getmiddle(Node head)
+        {
+            if(head == null)
+            return head;
+        
+        else
+        {
+            Node fast = head;
+            Node slow = head;
+            while(fast.next!=null && fast.next.next!=null)
+            {
+                fast = fast.next.next;
+                slow = slow.next;
+            }
+            return slow;
+        }
+}
+public static Node sortedMerge(Node a,Node b)
+{
+    
+    Node result = null;
+    if(a == null)
+    return b;
+    else if(b== null)
+    return a;
+    if(a.data < b.data)
+    {
+    result = a;
+    result.next = sortedMerge(a.next,b);
+    }
+    else
+    {
+        result = b;
+    result.next = sortedMerge(a,b.next);
+}
+return result;
+}
+}
